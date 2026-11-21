@@ -1,0 +1,7 @@
+<Solution>
+  <Configurations>
+    <Platform Name="x64" />
+    <Platform Name="x86" />
+  </Configurations>
+  <Project Path="ExpenseTracker.vcxproj" Id="ba6bfe0a-353e-4533-900b-c2f67b803b84" />
+</Solution>
