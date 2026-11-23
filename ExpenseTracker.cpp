@@ -11,8 +11,8 @@ int main()
 
     Transaction t1(1, TransactionType::Income, "Salary", 1500, "Work", "2026-11-01");
     Transaction t2(2, TransactionType::Expense, "Groceries", 75.50, "Food", "2026-11-02");
-	Transaction t3(3, TransactionType::Expense, "Fuel", 50, "Transport", "2026-11-03");
-	Transaction t4(4, TransactionType::Expense, "Fuel", 50, "Food", "2026-11-03");
+	Transaction t3(3, TransactionType::Expense, "Boat Fuel", 50, "Transport", "2026-11-03");
+	Transaction t4(4, TransactionType::Expense, "Car Fuel", 50, "Food", "2026-11-03");
 
     service.addTransaction(t1);
     service.addTransaction(t2);
@@ -101,8 +101,8 @@ int main()
 		cout << "------------------------" << endl;
 	}
 
-	cout << "Filtering by description Food:" << endl;
-	auto resultsDes = service.getTransactionsByDescription("Food");
+	cout << "Filtering by description Fuel:" << endl;
+	auto resultsDes = service.getTransactionsByDescription("Fuel");
 
 	for (const Transaction& des : resultsDes)
 	{
@@ -115,6 +115,17 @@ int main()
 		cout << "------------------------" << endl;
 	}
 
+	cout << "Sorting transactions by amount ascending:" << endl;
+	service.sortByAmount();
+	service.listTransactions();
+
+	cout << "Sorting transactions by amount descending:" << endl;
+	service.sortByAmountDescending();
+	service.listTransactions();
+
+	cout << "Sorting transactions by date:" << endl;
+	service.sortTransactionsByDate();
+	service.listTransactions();
 
 	return 0;
 }

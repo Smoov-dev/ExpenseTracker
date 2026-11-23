@@ -217,9 +217,45 @@ std::vector<Transaction> TransactionService::getTransactionsByDescription(const 
 		std::back_inserter(filteredTransactions),
 		[&description](const Transaction& transaction)
 		{
-			return transaction.getDescription() == description;
+			return transaction.getDescription().find(description) != std::string::npos;
 		}
 	);
 
 	return filteredTransactions;
+}
+
+void TransactionService::sortByAmount() 
+{
+	std::sort(
+		transactions.begin(), 
+		transactions.end(), 
+		[](const Transaction& a, const Transaction& b) 
+		{ 
+			return a.getAmount() < b.getAmount(); 
+		});
+	
+}
+
+void TransactionService::sortByAmountDescending()
+{
+	std::sort(
+		transactions.begin(), 
+		transactions.end(), 
+		[](const Transaction& a, const Transaction& b) 
+		{ 
+			return a.getAmount() > b.getAmount(); 
+		});
+}
+
+void TransactionService::sortTransactionsByDate()
+{
+	std::sort(
+		transactions.begin(), 
+		transactions.end(), 
+		[this](const Transaction& a, const Transaction& b) 
+		{ 
+			std::chrono::year_month_day dateA = dateConvertion(a.getDate());
+			std::chrono::year_month_day dateB = dateConvertion(b.getDate());
+			return dateA < dateB;
+		});
 }

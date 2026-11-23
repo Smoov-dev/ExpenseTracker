@@ -143,6 +143,7 @@
     <ClCompile Include="ExpenseTracker.cpp" />
     <ClCompile Include="ExpenseTracker\src\models\Category.cpp" />
     <ClCompile Include="ExpenseTracker\src\models\Transaction.cpp" />
+    <ClCompile Include="ExpenseTracker\src\services\CategoryService.cpp" />
     <ClCompile Include="ExpenseTracker\src\services\TransactionService.cpp" />
   </ItemGroup>
   <ItemGroup>

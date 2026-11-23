@@ -27,6 +27,9 @@
     <ClCompile Include="ExpenseTracker\src\services\TransactionService.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="ExpenseTracker\src\services\CategoryService.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="resource.h">

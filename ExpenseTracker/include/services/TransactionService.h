@@ -24,4 +24,7 @@ public:
 	std::vector<Transaction> getTransactionsByAmountRange(double minRange, double maxRange) const;
 	std::vector<Transaction> getTransactionsByDateRange(const std::string& dateStartStr, const std::string& dateEndStr) const;
 	std::vector<Transaction> getTransactionsByDescription(const std::string& description) const;
+	void sortByAmount();
+	void sortByAmountDescending();
+	void sortTransactionsByDate();
 };
