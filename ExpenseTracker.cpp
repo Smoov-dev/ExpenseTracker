@@ -1,6 +1,7 @@
 #include "models/Transaction.h"
 #include "models/Category.h"
 #include "services/TransactionService.h"
+#include "services/CategoryService.h"
 #include <iostream>
 
 using namespace std;
@@ -126,6 +127,45 @@ int main()
 	cout << "Sorting transactions by date:" << endl;
 	service.sortTransactionsByDate();
 	service.listTransactions();
+
+	cout << "Listing categories:" << endl;
+
+	CategoryService catService;
+	Category c1 (1, "Games");
+	Category c2 (2, "Movies");
+
+	catService.addCategory(c1);
+	catService.addCategory(c2);
+	catService.listCategories();
+
+	cout << "Getting category with id 2:" << endl;
+	Category& test = catService.getCategoryByID(2);
+
+	cout << "ID: " << test.getID() << endl;
+	cout << "Name: " << test.getName() << endl;
+	cout << "------------------------" << endl;
+
+	cout << "Editing category with id 2 name to Music:" << endl;
+	catService.editCategoryByID(2, "Music");
+	cout << "ID: " << test.getID() << endl;
+	cout << "Name: " << test.getName() << endl;
+	cout << "------------------------" << endl;
+	
+	cout << "Deleting category with id 2:" << endl;
+	catService.deleteCategoryByID(2);
+	catService.listCategories();
+
+	catService.addCategory(c2);
+
+	cout << "Getting category with the name Movies:" << endl;
+	std::vector <Category> testName = catService.getCategoryByName("Movies");
+	for ( const Category& name : testName) 
+	{
+		cout << "ID: " << name.getID() << endl;
+		cout << "Name: " << name.getName() << endl;
+		cout << "------------------------" << endl;
+	}
+	
 
 	return 0;
 }
