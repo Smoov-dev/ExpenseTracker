@@ -133,6 +133,7 @@ int main()
 	CategoryService catService;
 	Category c1 (1, "Games");
 	Category c2 (2, "Movies");
+	Category c3 (2, "testtMovies");
 
 	catService.addCategory(c1);
 	catService.addCategory(c2);
@@ -166,6 +167,7 @@ int main()
 		cout << "------------------------" << endl;
 	}
 	
+	catService.addCategory(c3);
 
 	return 0;
 }

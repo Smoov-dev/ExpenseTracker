@@ -10,9 +10,16 @@ using namespace std;
 
 CategoryService::CategoryService(std::vector<Category> categories) : categories(categories) {}
 
-void CategoryService::addCategory(const Category& category)
+bool CategoryService::addCategory(const Category& category)
 {
+	if (categoryExists(category.getID()))
+	{
+		cout << "Error: Category ID already exists." << endl;
+		return false;
+	}
+
 	categories.push_back(category);
+	return true;
 }
 
 void CategoryService::listCategories() const
@@ -94,3 +101,42 @@ std::vector <Category> CategoryService::getCategoryByName(const std::string& nam
 
 	return filteredCategories;
 }
+
+bool CategoryService::categoryExists(int id) const
+{
+
+	auto it = std::find_if(
+		categories.begin(),
+		categories.end(),
+		[id](const Category& category)
+		{
+			return category.getID() == id;
+		}
+	);
+
+	return it != categories.end();
+}
+
+int CategoryService::getNextCategoryID() const
+{
+	auto maxID = std::max_element(
+		categories.begin(),
+		categories.end(),
+		[](const Category& a, const Category& b)
+		{
+			return a.getID() < b.getID();
+		}
+	);
+
+	if (maxID != categories.end())
+	{
+		return (*maxID).getID() + 1;
+	}
+	else
+	{
+		return 1;
+	}
+
+}
+
+
