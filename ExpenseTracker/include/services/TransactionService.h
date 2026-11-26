@@ -27,4 +27,5 @@ public:
 	void sortByAmount();
 	void sortByAmountDescending();
 	void sortTransactionsByDate();
+	std::vector<Transaction> getAllTransactions() const;
 };

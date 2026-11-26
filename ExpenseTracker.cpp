@@ -2,6 +2,7 @@
 #include "models/Category.h"
 #include "services/TransactionService.h"
 #include "services/CategoryService.h"
+#include "services/FinancialSummaryService.h"
 #include <iostream>
 
 using namespace std;
@@ -11,8 +12,8 @@ int main()
     TransactionService service;
 
     Transaction t1(1, TransactionType::Income, "Salary", 1500, "Work", "2026-11-01");
-    Transaction t2(2, TransactionType::Expense, "Groceries", 75.50, "Food", "2026-11-02");
-	Transaction t3(3, TransactionType::Expense, "Boat Fuel", 50, "Transport", "2026-11-03");
+    Transaction t2(2, TransactionType::Expense, "Groceries", 78.50, "Food", "2026-11-02");
+	Transaction t3(3, TransactionType::Expense, "Boat Fuel", 126, "Transport", "2026-11-03");
 	Transaction t4(4, TransactionType::Expense, "Car Fuel", 50, "Food", "2026-11-03");
 
     service.addTransaction(t1);
@@ -168,6 +169,35 @@ int main()
 	}
 	
 	catService.addCategory(c3);
+
+	FinancialSummaryService finService(service.getAllTransactions());
+
+	double totalInc = finService.getTotalIncome();
+	cout << "Total income: " << totalInc << endl;
+
+	double  totalEx = finService.getTotalExpenses();
+	cout << "Total expense: " << totalEx << endl;
+
+	double  balance = finService.getBalance();
+	cout << "Total balance: " << balance << endl;
+
+	double  avgEx = finService.getAverageExpense();
+	cout << "Total average expense: " << avgEx << endl;
+
+	Transaction  largestT = finService.getLargestExpense();
+	cout << "Biggest expense: " << endl;
+	cout << "ID: " << largestT.getID() << endl;
+	cout << "Type: " << transactionTypeToString(largestT.getType()) << endl;
+	cout << "Description: " << largestT.getDescription() << endl;
+	cout << "Amount: $" << largestT.getAmount() << endl;
+	cout << "Category: " << largestT.getCategory() << endl;
+	cout << "Date: " << largestT.getDate() << endl;
+	cout << "------------------------" << endl;
+
+	string highestCategory = finService.getHighestSpendingCategory();
+
+	cout << "Biggest spender category: " << highestCategory << endl;
+
 
 	return 0;
 }

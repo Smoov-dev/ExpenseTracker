@@ -41,7 +41,7 @@ Transaction& TransactionService::getTransactionByID(int id)
 	auto it = std::find_if(
 		transactions.begin(),
 		transactions.end(),
-		[id	](const Transaction& transaction)
+		[id](const Transaction& transaction)
 		{
 			return transaction.getID() == id;
 		}
@@ -258,4 +258,9 @@ void TransactionService::sortTransactionsByDate()
 			std::chrono::year_month_day dateB = dateConvertion(b.getDate());
 			return dateA < dateB;
 		});
+}
+
+std::vector<Transaction> TransactionService::getAllTransactions() const
+{
+	return transactions;
 }
