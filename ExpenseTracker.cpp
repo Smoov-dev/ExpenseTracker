@@ -197,7 +197,21 @@ int main()
 	string highestCategory = finService.getHighestSpendingCategory();
 
 	cout << "Biggest spender category: " << highestCategory << endl;
+	cout << "------------------------" << endl;
 
+	auto searchTransactions = service.searchTransactions(TransactionType::Expense, std::nullopt, 50, 80);
+	
+	cout << "Searching transactions that are Expenses between 50 and 80$:" << endl;
+	for (const Transaction& des : searchTransactions)
+	{
+		cout << "ID: " << des.getID() << endl;
+		cout << "Type: " << transactionTypeToString(des.getType()) << endl;
+		cout << "Description: " << des.getDescription() << endl;
+		cout << "Amount: $" << des.getAmount() << endl;
+		cout << "Category: " << des.getCategory() << endl;
+		cout << "Date: " << des.getDate() << endl;
+		cout << "------------------------" << endl;
+	}
 
 	return 0;
 }

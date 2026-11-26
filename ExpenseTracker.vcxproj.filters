@@ -33,6 +33,9 @@
     <ClCompile Include="ExpenseTracker\src\services\FinancialSummaryService.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="ExpenseTracker\src\storage\FileManager.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="resource.h">
@@ -51,6 +54,9 @@
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="ExpenseTracker\include\services\FinancialSummaryService.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="ExpenseTracker\include\storage\FileManager.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>

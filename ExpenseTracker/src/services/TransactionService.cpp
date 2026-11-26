@@ -6,6 +6,7 @@
 #include <iterator>
 #include <chrono>
 #include <sstream>
+#include <optional>
 
 
 using namespace std;
@@ -263,4 +264,33 @@ void TransactionService::sortTransactionsByDate()
 std::vector<Transaction> TransactionService::getAllTransactions() const
 {
 	return transactions;
+}
+
+std::vector<Transaction> TransactionService::searchTransactions(std::optional<TransactionType> type, const std::optional<std::string>& category, std::optional<double> minAmount, std::optional<double> maxAmount) const
+{
+	std::vector<Transaction> filteredTransactions;
+
+	if (minAmount.has_value() && maxAmount.has_value())
+	{
+		if (minAmount.value() > maxAmount.value())
+		{
+			throw std::invalid_argument("Minimum amount cannot exceed maximum amount.");
+		}
+	}
+
+
+	std::copy_if(
+		transactions.begin(),
+		transactions.end(),
+		std::back_inserter(filteredTransactions),
+		[&type, &category, &minAmount, &maxAmount](const Transaction& transaction)
+		{
+			return (!type.has_value() || transaction.getType() == type.value()) &&
+				(!category.has_value() || transaction.getCategory() == category.value()) &&
+				(!minAmount.has_value() || transaction.getAmount() >= minAmount.value()) &&
+				(!maxAmount.has_value() || transaction.getAmount() <= maxAmount.value());
+		}
+	);
+
+	return filteredTransactions;
 }

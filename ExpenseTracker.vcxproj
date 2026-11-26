@@ -146,6 +146,7 @@
     <ClCompile Include="ExpenseTracker\src\services\CategoryService.cpp" />
     <ClCompile Include="ExpenseTracker\src\services\FinancialSummaryService.cpp" />
     <ClCompile Include="ExpenseTracker\src\services\TransactionService.cpp" />
+    <ClCompile Include="ExpenseTracker\src\storage\FileManager.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="ExpenseTracker\include\models\Category.h" />
@@ -153,6 +154,7 @@
     <ClInclude Include="ExpenseTracker\include\services\CategoryService.h" />
     <ClInclude Include="ExpenseTracker\include\services\FinancialSummaryService.h" />
     <ClInclude Include="ExpenseTracker\include\services\TransactionService.h" />
+    <ClInclude Include="ExpenseTracker\include\storage\FileManager.h" />
     <ClInclude Include="resource.h" />
   </ItemGroup>
   <ItemGroup>

@@ -28,4 +28,5 @@ public:
 	void sortByAmountDescending();
 	void sortTransactionsByDate();
 	std::vector<Transaction> getAllTransactions() const;
+	std::vector<Transaction> searchTransactions(std::optional<TransactionType> type, const std::optional<std::string>& category, std::optional<double> minAmount, std::optional<double> maxAmount) const;
 };
